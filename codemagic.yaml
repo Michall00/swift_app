@@ -14,9 +14,10 @@ workflows:
           gem install cocoapods
       - name: Create Xcode Project
         script: |
-          mkdir swift_app
-          cd swift_app
-          xcodebuild -create-xcframework -output swift_app.xcworkspace
+          mkdir MyApp
+          cd MyApp
+          swift package init --type executable
+          swift package describe
       - name: Build iOS app
         script: |
           xcodebuild -workspace $XCODE_WORKSPACE \
