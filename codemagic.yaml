@@ -1,0 +1,27 @@
+workflows:
+  ios-app:
+    name: Build iOS App
+    instance_type: mac_mini_m1
+    environment:
+      vars:
+        XCODE_WORKSPACE: "swift_app.xcworkspace"
+        XCODE_SCHEME: "swift_app"
+      groups:
+        - app_store_credentials
+    scripts:
+      - name: Install dependencies
+        script: |
+          brew install swiftlint
+          gem install cocoapods
+      - name: Build iOS app
+        script: |
+          xcodebuild -workspace $XCODE_WORKSPACE \
+                     -scheme $XCODE_SCHEME \
+                     -sdk iphoneos \
+                     -configuration Release \
+                     build
+    artifacts:
+      - build/ios/iphoneos/*.ipa
+    publishing:
+      app_store_connect:
+        auth: integration
