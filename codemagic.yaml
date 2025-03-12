@@ -12,6 +12,9 @@ workflows:
         script: |
           brew install swiftlint
           gem install cocoapods
+      - name: Generate Xcode Project
+        script: |
+          swift package generate-xcodeproj
       - name: Build iOS app
         script: |
           xcodebuild -workspace $XCODE_WORKSPACE \
