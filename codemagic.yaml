@@ -6,8 +6,7 @@ workflows:
       vars:
         XCODE_WORKSPACE: "swift_app.xcworkspace"
         XCODE_SCHEME: "swift_app"
-      groups:
-        - app_store_credentials
+      xcode: latest
     scripts:
       - name: Install dependencies
         script: |
@@ -19,9 +18,6 @@ workflows:
                      -scheme $XCODE_SCHEME \
                      -sdk iphoneos \
                      -configuration Release \
-                     build
+                     build CODE_SIGNING_ALLOWED=NO CODE_SIGN_IDENTITY="" PROVISIONING_PROFILE_SPECIFIER=""
     artifacts:
       - build/ios/iphoneos/*.ipa
-    publishing:
-      app_store_connect:
-        auth: integration
