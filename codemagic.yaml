@@ -4,7 +4,7 @@ workflows:
     instance_type: mac_mini_m2
     environment:
       vars:
-        XCODE_WORKSPACE: "swift_app.xcworkspace"
+        XCODE_WORKSPACE: "swift_app.xcodeproj"
         XCODE_SCHEME: "swift_app"
       xcode: latest
     scripts:
